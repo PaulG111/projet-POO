@@ -43,6 +43,6 @@ public:
     int getLargeur();
     int getLongueur(); 
     Cellule& getCellule(int x, int y);
-    int compterVoisinVivants(int x, int y);
+    int compterVoisinVivants(int x, int y); //faut un s à voisin car tu en as mis un dans le .h
 
 };

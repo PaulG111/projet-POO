@@ -1,5 +1,6 @@
-#include "Cellule.hpp"
-#include "EtatCellule.hpp"
+#include "Cellule.h"
+#include "EtatCellule.h"
+
 #include <iostream>
 
 // Constructeur
