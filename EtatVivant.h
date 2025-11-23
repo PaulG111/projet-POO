@@ -1,0 +1,9 @@
+#ifndef PROJET_POO_ETATVIVANT_H
+#define PROJET_POO_ETATVIVANT_H
+
+
+class EtatVivant {
+};
+
+
+#endif //PROJET_POO_ETATVIVANT_H

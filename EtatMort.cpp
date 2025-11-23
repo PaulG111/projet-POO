@@ -1,0 +1,2 @@
+
+#include "EtatMort.h"

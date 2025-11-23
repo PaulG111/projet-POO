@@ -1,0 +1,9 @@
+#ifndef PROJET_POO_ETATCELLULE_H
+#define PROJET_POO_ETATCELLULE_H
+
+
+class EtatCellule {
+};
+
+
+#endif //PROJET_POO_ETATCELLULE_H
