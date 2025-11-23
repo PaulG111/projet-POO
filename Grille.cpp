@@ -1,4 +1,5 @@
 #include "Grille.h"
+/*
 
 Grille::Grille(int largeur, int longueur):
 largeur(largeur), longueur(longueur)
