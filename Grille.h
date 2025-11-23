@@ -29,7 +29,7 @@ class Grille {
 
 #endif //PROJET_POO_GRILLE_H
 
-
+/*
 #include "Cellule.h"
 #include <vector>
 
@@ -43,6 +43,6 @@ public:
     int getLargeur();
     int getLongueur(); 
     Cellule& getCellule(int x, int y);
-    int compterVoisinVivants(int x, int y); //faut un s à voisin car tu en as mis un dans le .h
+    int compterVoisinsVivants(int x, int y);
 
 };
