@@ -4,24 +4,28 @@
 Grille::Grille(int largeur, int longueur):
 largeur(largeur), longueur(longueur)
 {
-    cellules.resize(longueur);
+    cellules.resize(longueur); //c'est quoi resize() ?
     for (int y = 0; y < longueur; y++) {
         cellules[y].resize(largeur);
-        for (int x = 0; x < largeur; x+) {
-            cellules[y][x] = Cellule(x, y, false);
+        for (int x = 0; x < largeur; x+) { //x+ => x++
+            cellules[y][x] = Cellule(x, y, false); //manque le type je pense, pas les memes parametres que le constructeur ?!
         };
     }
 }
+
 int Grille::getLargeur() {
     return largeur;
 }
+
 int Grille::getLongueur() {
     return longueur;
 }
+
 Cellule& Grille::getCellule(int x, int y) {
     return cellules[y][x];
 }
-int Grille::compterVoisinsVivants(int x, int y) {
+
+int Grille::compterVoisinsVivants(int x, int y) { //le titre est faux => pas de s a Voisin
     int compteur = 0;
     for (int dy = -1; dy <= 1; dy++) {
         for (int dx = -1; dx <= 1; dx++) {
@@ -41,6 +45,5 @@ int Grille::compterVoisinsVivants(int x, int y) {
             }
         }
     }
-
     return compteur;
 }
