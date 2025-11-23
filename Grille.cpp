@@ -1,13 +1,12 @@
 #include "Grille.h"
-/*
 
 Grille::Grille(int largeur, int longueur):
 largeur(largeur), longueur(longueur)
 {
-    cellules.resize(longueur);                      
+    cellules.resize(longueur);
     for (int y = 0; y < longueur; y++) {
         cellules[y].resize(largeur);
-        for (int x = 0; x < largeur; x++) {         
+        for (int x = 0; x < largeur; x++) {
             cellules[y][x] = Cellule(x, y, false);
         };
     }
@@ -40,7 +39,7 @@ int Grille::compterVoisinsVivants(int x, int y) {
             if (voisinY < 0 || voisinY >= longueur){
                 continue;
             }
-            if (cellules[voisinY][voisinX].estVivante()) { 
+            if (cellules[voisinY][voisinX].estVivante()) {
                 compteur++;
             }
         }

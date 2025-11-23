@@ -12,4 +12,4 @@ add_executable(projet_POO
         EtatVivant.cpp
         Grille.cpp
         EtatCellule.cpp
-        Cellule.h)
+        )

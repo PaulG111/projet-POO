@@ -1,7 +1,7 @@
 #ifndef PROJET_POO_GRILLE_H
 #define PROJET_POO_GRILLE_H
 
-#include "EtatCellule.h"
+
 #include "Cellule.h"
 
 #include <vector>
@@ -29,7 +29,7 @@ class Grille {
 
 #endif //PROJET_POO_GRILLE_H
 
-/*
+
 #include "Cellule.h"
 #include <vector>
 
