@@ -1,9 +1,8 @@
-#ifndef PROJET_POO_ETATVIVANT_H
-#define PROJET_POO_ETATVIVANT_H
-
+#pragma once
 
 class EtatVivant {
+public :
+  etatVivant() = default;
+  bool estVivant() const {return true}
+  char getSymbole() const {return "1"}
 };
-
-
-#endif //PROJET_POO_ETATVIVANT_H
