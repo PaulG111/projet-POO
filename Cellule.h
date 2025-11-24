@@ -1,6 +1,4 @@
-#pragma once
-
-#include <memory> 
+#include <memory>
 #include <utility> 
 
 class EtatCellule;
