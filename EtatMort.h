@@ -1,9 +1,8 @@
-#ifndef PROJET_POO_ETATMORT_H
-#define PROJET_POO_ETATMORT_H
-
+#pragma once
 
 class EtatMort {
+public :
+  etatmort() = default;
+  bool estVivant() const {return false}
+  char getSymbole() const {return "0"}
 };
-
-
-#endif //PROJET_POO_ETATMORT_H
