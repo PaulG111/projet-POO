@@ -1,9 +1,9 @@
-#ifndef PROJET_POO_ETATVIVANT_H
-#define PROJET_POO_ETATVIVANT_H
+#pragma once
 
-
-class EtatVivant {
+class EtatVivant : public EtatCellule {
+public :
+  etatVivant() = default;
+  bool estVivant() const override {return true}
+  char getSymbole() const override {return "1"}
+  EtatCellule* clone() const override { return new EtatVivant(*this); }
 };
-
-
-#endif //PROJET_POO_ETATVIVANT_H
