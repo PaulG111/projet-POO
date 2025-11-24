@@ -1,5 +1,5 @@
-#include "Cellule.hpp"
-#include "EtatCellule.hpp"
+#include "Cellule.h"
+#include "EtatCellule.h"
 #include <iostream>
 
 Cellule::Cellule(int x, int y, EtatCellule* etatInitial)
