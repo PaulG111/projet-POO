@@ -1,6 +1,6 @@
 #pragma once
 
-class EtatVivant {
+class EtatVivant : public EtatCellule {
 public :
   etatVivant() = default;
   bool estVivant() const {return true}
