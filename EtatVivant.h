@@ -1,9 +1,13 @@
 #pragma once
+#include "EtatCellule.h"
 
 class EtatVivant : public EtatCellule {
+
 public :
-  etatVivant() = default;
-  bool estVivant() const override {return true}
-  char getSymbole() const override {return "1"}
-  EtatCellule* clone() const override { return new EtatVivant(*this); }
+
+  etatvivant() = default;
+  bool estVivante() const override;
+  char getSymbole() const override;
+  EtatCellule* clone() const override;
+
 };
