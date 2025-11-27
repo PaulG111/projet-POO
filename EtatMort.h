@@ -2,12 +2,10 @@
 #include "EtatCellule.h"
 
 class EtatMort : public EtatCellule {
+public:
+    EtatMort() = default;
 
-public :
-
-  etatmort() = default;
-  bool estVivante() const override;
-  char getSymbole() const override;
-  EtatCellule* clone() const override;
-
+    bool estVivante() const override;
+    char getSymbole() const override;
+    EtatCellule* clone() const override;
 };

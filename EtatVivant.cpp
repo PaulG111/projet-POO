@@ -1,13 +1,13 @@
 #include "EtatVivant.h"
 
 bool EtatVivant::estVivante() const {
-  return true;
+    return true;
 }
 
-char EtatMort::getSymbole() const {
-  return "1";
+char EtatVivant::getSymbole() const {
+    return '1';
 }
 
-EtatCellule*EtatVivant::clone() const {
-  return new EtatVivant(*this);
+EtatCellule* EtatVivant::clone() const {
+    return new EtatVivant(*this);
 }

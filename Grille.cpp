@@ -5,6 +5,7 @@
 #include <string>
 
 #include "EtatCellule.h"
+#include "EtatMort.h"
 
 using namespace std;
 
@@ -13,10 +14,12 @@ largeur(largeur), hauteur(hauteur)
 {
     cellules.resize(hauteur);
     for (int y = 0; y < hauteur; y++) {
-        cellules[y].resize(largeur);
+        // Éviter la nécessité d'un constructeur par défaut de Cellule
+        cellules[y].reserve(largeur);
         for (int x = 0; x < largeur; x++) {
-            cellules[y][x] = Cellule(x, y, false);
-        };
+            // Initialiser chaque cellule avec un état valide (morte par défaut)
+            cellules[y].emplace_back(x, y, new EtatMort());
+        }
     }
 }
 
@@ -32,9 +35,14 @@ Cellule& Grille::getCellule(int x, int y) {
     return cellules[y][x];
 }
 
+Cellule& Grille::getCelluleMutable(int x, int y) {
+    return cellules[y][x];
+}
+
 void Grille::initCellule(int x, int y, EtatCellule * etat) {
-    Cellule c(x,y, etat);
-    cellules [y][x] = c;
+    // Éviter la copie/assignation de Cellule (non copiable à cause de unique_ptr)
+    cellules[y][x].preparerProchainEtat(etat);
+    cellules[y][x].validerEtat();
 }
 
 int Grille::compterVoisinsVivants(int x, int y) {

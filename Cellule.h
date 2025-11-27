@@ -15,6 +15,14 @@ private:
 public:
 
     Cellule(int x, int y, EtatCellule* etatInitial);
+
+    // Interdire la copie (unique_ptr non copiable)
+    Cellule(const Cellule&) = delete;
+    Cellule& operator=(const Cellule&) = delete;
+
+    // Autoriser le mouvement pour permettre le stockage dans std::vector
+    Cellule(Cellule&&) noexcept = default;
+    Cellule& operator=(Cellule&&) noexcept = default;
     
     ~Cellule();
 
