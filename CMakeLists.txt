@@ -39,6 +39,7 @@ add_executable(projet_POO
         EtatVivant.cpp
         Grille.cpp
         EtatCellule.cpp
+        Fichier.cpp
 )
 
 target_link_libraries(projet_POO PRIVATE

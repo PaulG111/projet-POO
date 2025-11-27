@@ -5,7 +5,7 @@
 #include "Cellule.h"
 
 #include <vector>
-/*
+
 class Grille {
     private:
     int largeur;
@@ -16,33 +16,15 @@ class Grille {
     Grille(int largeur, int hauteur);
 
     int getLargeur();
-    int getLongueur();
+    int getHauteur();
 
-    Cellule& getCellule(int x, int y); // adresse vrmt necessaire ?
-    Cellule& getCelluleMutable(int x, int y); // adresse vrmt necessaire ? / changer le nom aussi
+    Cellule& getCellule(int x, int y);
+    Cellule& getCelluleMutable(int x, int y); // changer le nom aussi
 
     void initCellule(int x, int y, EtatCellule * etat);
     int compterVoisinsVivants(int x, int y);
-    void actualiserToutesCellules();
+    void actualiserToutesCellules(); //attends les regles du jeu
 };
-*/
 
 #endif //PROJET_POO_GRILLE_H
 
-
-#include "Cellule.h"
-#include <vector>
-
-class Grille {
-private:
-    int largeur;
-    int longueur; 
-    std::vector<std::vector<Cellule>> cellules;
-public:
-    Grille(int largeur, int longueur);
-    int getLargeur();
-    int getLongueur(); 
-    Cellule& getCellule(int x, int y);
-    int compterVoisinsVivants(int x, int y);
-
-};

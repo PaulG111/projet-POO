@@ -1,10 +1,18 @@
 #include "Grille.h"
 
-Grille::Grille(int largeur, int longueur):
-largeur(largeur), longueur(longueur)
+#include <memory>
+#include <vector>
+#include <string>
+
+#include "EtatCellule.h"
+
+using namespace std;
+
+Grille::Grille(int largeur, int hauteur):
+largeur(largeur), hauteur(hauteur)
 {
-    cellules.resize(longueur);
-    for (int y = 0; y < longueur; y++) {
+    cellules.resize(hauteur);
+    for (int y = 0; y < hauteur; y++) {
         cellules[y].resize(largeur);
         for (int x = 0; x < largeur; x++) {
             cellules[y][x] = Cellule(x, y, false);
@@ -16,12 +24,17 @@ int Grille::getLargeur() {
     return largeur;
 }
 
-int Grille::getLongueur() {
-    return longueur;
+int Grille::getHauteur() {
+    return hauteur;
 }
 
 Cellule& Grille::getCellule(int x, int y) {
     return cellules[y][x];
+}
+
+void Grille::initCellule(int x, int y, EtatCellule * etat) {
+    Cellule c(x,y, etat);
+    cellules [y][x] = c;
 }
 
 int Grille::compterVoisinsVivants(int x, int y) {
@@ -36,7 +49,7 @@ int Grille::compterVoisinsVivants(int x, int y) {
             if (voisinX < 0 || voisinX >= largeur){ //pour les cellules au extremite
                 continue;
             }
-            if (voisinY < 0 || voisinY >= longueur){
+            if (voisinY < 0 || voisinY >= hauteur){
                 continue;
             }
             if (cellules[voisinY][voisinX].estVivante()) {

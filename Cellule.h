@@ -26,7 +26,7 @@ public:
 
     char getSymbole() const;
 
-    std::pair<int, int> getCoordonnees() const;
+    std::pair<int, int> getCoordonnees() const; //rajouter pour compterVoisinsVivant
     
     const EtatCellule* getEtatActuel() const;
 };

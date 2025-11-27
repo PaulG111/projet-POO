@@ -2,6 +2,11 @@
 #include <vector>
 #include <ctime>
 #include <cstdlib>
+#include <string>
+
+using namespace std;
+
+string chemin = " ";
 
 const int cellSize = 10;
 const int gridWidth = 80;
