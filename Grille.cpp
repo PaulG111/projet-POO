@@ -1,11 +1,12 @@
 #include "Grille.h"
+#include "EtatCellule.h"
+#include "EtatMort.h"
 
 #include <memory>
 #include <vector>
 #include <string>
 
-#include "EtatCellule.h"
-#include "EtatMort.h"
+
 
 using namespace std;
 

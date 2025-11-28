@@ -1,7 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <ctime>
-#include <cstdlib>
 #include <string>
 
 using namespace std;

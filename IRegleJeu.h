@@ -1,0 +1,9 @@
+#ifndef PROJET_POO_IREGLEJEU_H
+#define PROJET_POO_IREGLEJEU_H
+
+
+class IRegleJeu {
+};
+
+
+#endif //PROJET_POO_IREGLEJEU_H

@@ -1,0 +1,9 @@
+#ifndef PROJET_POO_VUECONSOLE_H
+#define PROJET_POO_VUECONSOLE_H
+
+
+class VueConsole {
+};
+
+
+#endif //PROJET_POO_VUECONSOLE_H

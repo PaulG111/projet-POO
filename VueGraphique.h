@@ -1,0 +1,9 @@
+#ifndef PROJET_POO_VUEGRAPHIQUE_H
+#define PROJET_POO_VUEGRAPHIQUE_H
+
+
+class VueGraphique {
+};
+
+
+#endif //PROJET_POO_VUEGRAPHIQUE_H

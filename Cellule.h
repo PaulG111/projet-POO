@@ -9,7 +9,6 @@ private:
     int y;
 
     std::unique_ptr<EtatCellule> etatActuel;
-
     std::unique_ptr<EtatCellule> etatSuivant;
 
 public:
@@ -34,7 +33,7 @@ public:
 
     char getSymbole() const;
 
-    std::pair<int, int> getCoordonnees() const; //rajouter pour compterVoisinsVivant
+    std::pair<int, int> getCoordonnees() const; //pourquoi rajouter ça ?
     
     const EtatCellule* getEtatActuel() const;
 };

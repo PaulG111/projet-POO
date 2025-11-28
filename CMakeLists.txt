@@ -40,6 +40,12 @@ add_executable(projet_POO
         Grille.cpp
         EtatCellule.cpp
         Fichier.cpp
+        RegleConway.cpp
+        IRegleJeu.cpp
+        Jeu.cpp
+        IVue.cpp
+        VueConsole.cpp
+        VueGraphique.cpp
 )
 
 target_link_libraries(projet_POO PRIVATE
