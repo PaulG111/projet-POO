@@ -3,7 +3,6 @@
 
 
 #include "Cellule.h"
-
 #include <vector>
 
 class Grille {

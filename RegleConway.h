@@ -1,5 +1,5 @@
 #pragma once
-#include "RegleJeu"
+#include "IRegleJeu.h"
 
 class Cellule;
 class EtatCellule;

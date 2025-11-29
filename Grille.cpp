@@ -6,9 +6,8 @@
 #include <vector>
 #include <string>
 
-
-
 using namespace std;
+
 
 Grille::Grille(int largeur, int hauteur):
 largeur(largeur), hauteur(hauteur)
@@ -67,4 +66,8 @@ int Grille::compterVoisinsVivants(int x, int y) {
         }
     }
     return compteur;
+}
+
+void Grille::actualiserToutesCellules() {
+
 }

@@ -1,5 +1,7 @@
 #pragma once
 
+//pas de fihcier .cpp car la classe est abstraite
+
 class EtatCellule {
 public:
     virtual ~EtatCellule() = default;

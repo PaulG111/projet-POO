@@ -38,14 +38,12 @@ add_executable(projet_POO
         EtatMort.cpp
         EtatVivant.cpp
         Grille.cpp
-        EtatCellule.cpp
         Fichier.cpp
         RegleConway.cpp
-        IRegleJeu.cpp
         Jeu.cpp
-        IVue.cpp
         VueConsole.cpp
         VueGraphique.cpp
+        IVue.h
 )
 
 target_link_libraries(projet_POO PRIVATE
