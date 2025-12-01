@@ -1,6 +1,6 @@
-#include "RegleConway.hpp"
-#include "EtatVivant.hpp"
-#include "EtatMort.hpp"
+#include "RegleConway.h"
+#include "EtatVivant.h"
+#include "EtatMort.h"
 
 EtatCellule* RegleConway::calculerProchainEtat(const EtatCellule& etatActuel, int nbVoisins) const {
     bool estVivante = etatActuel.estVivante();
