@@ -15,10 +15,11 @@ class Grille {
     public:
     Grille(int largeur, int hauteur);
 
-    int getLargeur();
-    int getHauteur();
+    int getLargeur() const;
+    int getHauteur() const;
 
     Cellule& getCellule(int x, int y);
+    const Cellule& getCellule(int x, int y) const;
     Cellule& getCelluleMutable(int x, int y);
 
     void initCellule(int x, int y, EtatCellule * etat);

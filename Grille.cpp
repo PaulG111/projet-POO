@@ -21,15 +21,19 @@ Grille::Grille(int largeur, int hauteur): largeur(largeur), hauteur(hauteur) {
     }
 }
 
-int Grille::getLargeur() {
+int Grille::getLargeur() const {
     return largeur;
 }
 
-int Grille::getHauteur() {
+int Grille::getHauteur() const {
     return hauteur;
 }
 
 Cellule& Grille::getCellule(int x, int y) {
+    return cellules[y][x];
+}
+
+const Cellule& Grille::getCellule(int x, int y) const {
     return cellules[y][x];
 }
 
@@ -89,5 +93,4 @@ void Grille::actualiserToutesCellules(const IRegleJeu& regle) {
             cellules[y][x].validerEtat();
         }
     }
-}
 }
