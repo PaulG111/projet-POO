@@ -1,9 +1,10 @@
-#ifndef PROJET_POO_IREGLEJEU_H
-#define PROJET_POO_IREGLEJEU_H
-
+#pragma once
+class EtatCellule;
 
 class IRegleJeu {
+public:
+
+virtual ~IRegleJeu() = default;
+
+virtual EtatCellule* calculerProchainEtat(const EtatCellule& etatActuel, int nbVoisins) const = 0;
 };
-
-
-#endif //PROJET_POO_IREGLEJEU_H
