@@ -2,6 +2,7 @@
 #define PROJET_POO_GRILLE_H
 
 
+#include "IRegleJeu.h"
 #include "Cellule.h"
 #include <vector>
 
@@ -18,11 +19,11 @@ class Grille {
     int getHauteur();
 
     Cellule& getCellule(int x, int y);
-    Cellule& getCelluleMutable(int x, int y); // changer le nom aussi
+    Cellule& getCelluleMutable(int x, int y);
 
     void initCellule(int x, int y, EtatCellule * etat);
     int compterVoisinsVivants(int x, int y);
-    void actualiserToutesCellules(); //attends les regles du jeu
+    void actualiserToutesCellules(const IRegleJeu& regle); // applique la règle du jeu fournie sur toute la grille
 };
 
 #endif //PROJET_POO_GRILLE_H

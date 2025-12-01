@@ -4,10 +4,10 @@
 class Cellule;
 class EtatCellule;
 
-class RegleConway{
-public :
+class RegleConway : public IRegleJeu {
+public:
     RegleConway() = default;
-    ~RegleConway() = default;
+    ~RegleConway() override = default;
 
-    EtatCellule* calculerProchainEtat(const Cellule& cellule, int nbVoisinsVivants) const override ;
+    EtatCellule* calculerProchainEtat(const EtatCellule& etatActuel, int nbVoisins) const override;
 };

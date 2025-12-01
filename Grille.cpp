@@ -9,9 +9,7 @@
 using namespace std;
 
 
-Grille::Grille(int largeur, int hauteur):
-largeur(largeur), hauteur(hauteur)
-{
+Grille::Grille(int largeur, int hauteur): largeur(largeur), hauteur(hauteur) {
     cellules.resize(hauteur);
     for (int y = 0; y < hauteur; y++) {
         // Éviter la nécessité d'un constructeur par défaut de Cellule
@@ -68,6 +66,28 @@ int Grille::compterVoisinsVivants(int x, int y) {
     return compteur;
 }
 
-void Grille::actualiserToutesCellules() {
+void Grille::actualiserToutesCellules(const IRegleJeu& regle) {
+    // On parcourt toute la grille pour déterminer le futur état de chaque cellule
+    // sans encore modifier l'état actuel.
+    for (int y = 0; y < hauteur; ++y) {
+        for (int x = 0; x < largeur; ++x) {
+            // 1. Récupérer la cellule et son état actuel
+            Cellule& celluleCourante = cellules[y][x];
 
+            const EtatCellule& etatActuel = *celluleCourante.getEtatActuel();
+            int nbVoisins = compterVoisinsVivants(x, y);
+
+            EtatCellule* nouvelEtat = regle.calculerProchainEtat(etatActuel, nbVoisins);
+
+            celluleCourante.preparerProchainEtat(nouvelEtat);
+        }
+    }
+
+    // Maintenant que tout le monde a calculé son futur, on applique les changements.
+    for (int y = 0; y < hauteur; ++y) {
+        for (int x = 0; x < largeur; ++x) {
+            cellules[y][x].validerEtat();
+        }
+    }
+}
 }
