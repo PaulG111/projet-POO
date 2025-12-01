@@ -3,15 +3,19 @@
 #include "EtatMort.hpp"
 
 EtatCellule* RegleConway::calculerProchainEtat(const EtatCellule& etatActuel, int nbVoisins) const {
-    
-    bool estVivant = etatActuel.estVivante();
+    bool estVivante = etatActuel.estVivante();
 
-    if (estVivant) {
-      
-    } 
-    else {
-  
+    if (estVivante) {
+        if (nbVoisins == 2 || nbVoisins == 3) {
+            return new EtatVivant();
+        } else {
+            return new EtatMort();
+        }
+    } else {
+        if (nbVoisins == 3) {
+            return new EtatVivant();
+        } else {
+            return new EtatMort();
+        }
     }
-    
-    return nullptr; 
 }
