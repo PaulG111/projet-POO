@@ -9,8 +9,7 @@
 Jeu::Jeu(std::string fichierConfig, bool modeGraphique): iterationActuelle(0), maxIterations(100)
 {
     int largeur, longueur;
-    std::vector<std::vector<bool>> etats =
-        LecteurFichier::lire(fichierConfig, largeur, longueur);
+    std::vector<std::vector<bool>> etats = LecteurFichier::lire(fichierConfig, largeur, longueur);
     grille = std::unique_ptr<Grille>(new Grille(largeur, longueur));
     for (int y = 0; y < longueur; y++) {
         for (int x = 0; x < largeur; x++) {
