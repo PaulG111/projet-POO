@@ -1,9 +1,16 @@
-#ifndef PROJET_POO_VUEGRAPHIQUE_H
-#define PROJET_POO_VUEGRAPHIQUE_H
+#pragma once
+#include "IVue.h"
+#include <SFML/Graphics.hpp>
 
+class VueGraphique : public IVue {
+private:
+    sf::RenderWindow window;
+    float tailleCellule;
+    bool enPause;
 
-class VueGraphique {
+public:
+    VueGraphique(int largeurGrille, int hauteurGrille);
+    
+    void afficher(const Grille& grille, int iteration) override;
+    bool gererEntree() override;
 };
-
-
-#endif //PROJET_POO_VUEGRAPHIQUE_H
