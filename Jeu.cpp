@@ -6,11 +6,13 @@
 #include "EtatVivante.h"
 #include "EtatMort.h"
 
-Jeu::Jeu(std::string fichierConfig, bool modeGraphique): iterationActuelle(0), maxIterations(100)
+using namespace std;
+
+Jeu::Jeu(string fichierConfig, bool modeGraphique): iterationActuelle(0), maxIterations(100)
 {
     int largeur, longueur;
-    std::vector<std::vector<bool>> etats = LecteurFichier::lire(fichierConfig, largeur, longueur);
-    grille = std::unique_ptr<Grille>(new Grille(largeur, longueur));
+    vector<vector<bool>> etats = LecteurFichier::lire(fichierConfig, largeur, longueur);
+    grille = unique_ptr<Grille>(new Grille(largeur, longueur));
     for (int y = 0; y < longueur; y++) {
         for (int x = 0; x < largeur; x++) {
             if (etats[y][x])
@@ -19,15 +21,11 @@ Jeu::Jeu(std::string fichierConfig, bool modeGraphique): iterationActuelle(0), m
                 grille->initCellule(x, y, new EtatMort());
         }
     }
-
-    // la règle
-    regle = std::unique_ptr<IRegleJeu>(new RegleConway());
-
-    // la vue
+    regle = unique_ptr<IRegleJeu>(new RegleConway());
     if (!modeGraphique)
-        vue = std::unique_ptr<IVue>(new VueConsole());
+        vue = unique_ptr<IVue>(new VueConsole());
     else
-        vue = std::unique_ptr<IVue>(new VueGraphique());
+        vue = unique_ptr<IVue>(new VueGraphique());
 }
 void Jeu::lancer() {
     for (iterationActuelle = 0; iterationActuelle < maxIterations; ++iterationActuelle) {
