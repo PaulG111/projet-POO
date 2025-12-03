@@ -19,7 +19,7 @@ public :
     Jeu(string fichierConfig, bool modeGraphique);
     void lancer();
     void traiterLogique();
-    void testUnitaire(Grille attendu, int iter);
+    bool testUnitaire(const Grille& attendu, int iter);
 };
 
 

@@ -1,22 +1,22 @@
 #include "Jeu.h"
-#include "LecteurFichier.h"
+#include "Fichier.h"
 #include "RegleConway.h"
 #include "VueConsole.h"
 #include "VueGraphique.h"
-#include "EtatVivante.h"
+#include "EtatVivant.h"
 #include "EtatMort.h"
 
 using namespace std;
 
-Jeu::Jeu(string fichierConfig, bool modeGraphique): iterationActuelle(0), maxIterations(100)
-{
-    int largeur, longueur;
-    vector<vector<bool>> etats = LecteurFichier::lire(fichierConfig, largeur, longueur);
-    grille = unique_ptr<Grille>(new Grille(largeur, longueur));
-    for (int y = 0; y < longueur; y++) {
+Jeu::Jeu(string fichierConfig, bool modeGraphique): iterationActuelle(0), maxIterations(20) {
+    int largeur, hauteur;
+    Fichier fichier;
+    vector<vector<bool>> etats = fichier.lire(fichierConfig, largeur, hauteur);
+    grille = unique_ptr<Grille>(new Grille(largeur, hauteur));
+    for (int y = 0; y < hauteur; y++) {
         for (int x = 0; x < largeur; x++) {
             if (etats[y][x])
-                grille->initCellule(x, y, new EtatVivante());
+                grille->initCellule(x, y, new EtatVivant());
             else
                 grille->initCellule(x, y, new EtatMort());
         }
@@ -25,27 +25,41 @@ Jeu::Jeu(string fichierConfig, bool modeGraphique): iterationActuelle(0), maxIte
     if (!modeGraphique)
         vue = unique_ptr<IVue>(new VueConsole());
     else
-        vue = unique_ptr<IVue>(new VueGraphique());
+        vue = unique_ptr<IVue>(new VueGraphique(largeur, hauteur));
 }
+
 void Jeu::lancer() {
     for (iterationActuelle = 0; iterationActuelle < maxIterations; ++iterationActuelle) {
         vue->afficher(*grille, iterationActuelle);
         traiterLogique();
     }
 }
+
 void Jeu::traiterLogique() {
-    int h = grille->getLongueur();
-    int l = grille->getLargeur();
+    grille->actualiserToutesCellules(*regle);
+}
 
-    // 1) préparer les nouveaux états
-    for (int y = 0; y < h; ++y) {
-        for (int x = 0; x < l; ++x) {
-            Cellule& c = grille->getCelluleMutable(x, y);
+bool Jeu::testUnitaire(const Grille& grilleAttendue, int nbIterations) {
+    for (int i = 0; i < nbIterations; ++i) {
+        traiterLogique();
+    }
 
-            int voisins = grille->compterVoisinsVivants(x, y);
-            EtatCellule* nouvelEtat = regle->calculerProchainEtat(*c.getEtatActuel(), voisins);
-            c.preparerProchainEtat(nouvelEtat);
+    if (grille->getLargeur() != grilleAttendue.getLargeur() ||
+        grille->getHauteur() != grilleAttendue.getHauteur()) {
+        return false;
+        }
+
+
+    for (int y = 0; y < grille->getHauteur(); ++y) {
+        for (int x = 0; x < grille->getLargeur(); ++x) {
+            bool etatActuel  = grille->getCellule(x, y).estVivante();
+            bool etatAttendu = grilleAttendue.getCellule(x, y).estVivante();
+
+            if (etatActuel != etatAttendu) {
+                return false;
+            }
         }
     }
-    grille->actualiserToutesCellules();
+
+    return true;
 }
