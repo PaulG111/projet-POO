@@ -43,7 +43,7 @@ Cellule& Grille::getCelluleMutable(int x, int y) {
 bool grille::estVide() {
     for (int i=0 ; i<nbLignes ; i++) {
         for ( int j=0 ; j < nbColonnes ; j++) {
-            if (cellules [i][j] == 1)
+            if (cellules [i][j].estVivant())
                 return false;
         }
     }
