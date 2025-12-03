@@ -40,10 +40,10 @@ const Cellule& Grille::getCellule(int x, int y) const {
 Cellule& Grille::getCelluleMutable(int x, int y) {
     return cellules[y][x];
 }
-bool grille::estVide() {
-    for (int i=0 ; i<nbLignes ; i++) {
-        for ( int j=0 ; j < nbColonnes ; j++) {
-            if (cellules [i][j].estVivant())
+bool Grille::estVide() {
+    for (int y=0 ; y<hauteur ; y++) {
+        for ( int x=0 ; x<largeur ; x++) {
+            if (cellules [y][x].estVivant())
                 return false;
         }
     }
@@ -107,7 +107,7 @@ bool Grille::operator==(const Grille& autre) {
         return false;
     for (int y=0; y<hauteur ; y++)
         for (int x =0; x<largeur; x++)
-            if (getCellule(x,y).estVivante() != autre.getCellule(x,y).estVivante())
+            if (cellule(x,y).estVivante() != autre.cellule(x,y).estVivante())
                 return false;
     return true;
 }
