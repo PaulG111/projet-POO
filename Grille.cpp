@@ -8,7 +8,6 @@
 
 using namespace std;
 
-
 Grille::Grille(int largeur, int hauteur): largeur(largeur), hauteur(hauteur) {
     cellules.resize(hauteur);
     for (int y = 0; y < hauteur; y++) {
@@ -17,6 +16,19 @@ Grille::Grille(int largeur, int hauteur): largeur(largeur), hauteur(hauteur) {
         for (int x = 0; x < largeur; x++) {
             // Initialiser chaque cellule avec un état valide (morte par défaut)
             cellules[y].emplace_back(x, y, new EtatMort());
+        }
+    }
+}
+
+Grille::Grille(const Grille& autre): largeur(autre.largeur), hauteur(autre.hauteur) {
+    cellules.resize(hauteur);
+    for (int y = 0; y < hauteur; y++) {
+        cellules[y].reserve(largeur);
+        for (int x = 0; x < largeur; x++) {
+            if (autre.getCellule(x,y).estVivante())
+                cellules[y].emplace_back(x, y, new EtatVivant());
+            else
+                cellules[y].emplace_back(x, y, new EtatMort());
         }
     }
 }
