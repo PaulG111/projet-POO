@@ -101,3 +101,12 @@ void Grille::actualiserToutesCellules(const IRegleJeu& regle) {
         }
     }
 }
+bool Grille::operator==( Grille& autre) {
+    if (largeur != autre.largeur ||  hauteur != autre.hauteur)
+        return false;
+    for (int y=0; y<hauteur ; y++)
+        for (int x =0; x<largeur; x++)
+            if (getCellule(x,y).estVivante() != autre.getCellule(x,y).estVivante())
+                return false;
+    return true;
+}
