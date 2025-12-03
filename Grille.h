@@ -14,6 +14,7 @@ class Grille {
 
     public:
     Grille(int largeur, int hauteur);
+    Grille(const Grille& autre);
 
     int getLargeur() const;
     int getHauteur() const;
