@@ -6,12 +6,17 @@
 #include "EtatVivant.h"
 #include "EtatMort.h"
 
+#include <filesystem>
+#include <iostream>
+
 using namespace std;
 
 Jeu::Jeu(string fichierConfig, bool modeGraphique): iterationActuelle(0), maxIterations(20) {
     int largeur, hauteur;
     Fichier fichier;
+
     vector<vector<bool>> etats = fichier.lire(fichierConfig, largeur, hauteur);
+
     grille = unique_ptr<Grille>(new Grille(largeur, hauteur));
     for (int y = 0; y < hauteur; y++) {
         for (int x = 0; x < largeur; x++) {
@@ -22,8 +27,15 @@ Jeu::Jeu(string fichierConfig, bool modeGraphique): iterationActuelle(0), maxIte
         }
     }
     regle = unique_ptr<IRegleJeu>(new RegleConway());
-    if (!modeGraphique)
-        vue = unique_ptr<IVue>(new VueConsole());
+
+    if (!modeGraphique) {
+        std::filesystem::path cheminEntree(fichierConfig);
+        string nomBase = cheminEntree.stem().string();
+        string dossierSortie = nomBase + "_out";
+
+        vue = unique_ptr<IVue>(new VueConsole(dossierSortie));
+        std::cout << "Les fichiers seront generes dans le dossier : " << dossierSortie << std::endl;
+    }
     else
         vue = unique_ptr<IVue>(new VueGraphique(largeur, hauteur));
 }
