@@ -47,7 +47,8 @@ bool grille::estVide() {
                 return false;
         }
     }
-return true;
+    return true;
+}
 void Grille::initCellule(int x, int y, EtatCellule * etat) {
     // Éviter la copie/assignation de Cellule (non copiable à cause de unique_ptr)
     cellules[y][x].preparerProchainEtat(etat);
