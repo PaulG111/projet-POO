@@ -11,7 +11,7 @@
 
 using namespace std;
 
-Jeu::Jeu(string fichierConfig, bool modeGraphique): iterationActuelle(0), maxIterations(20) {
+Jeu::Jeu(string fichierConfig, bool modeGraphique): iterationActuelle(0), maxIterations(100) {
     int largeur, hauteur;
     Fichier fichier;
 

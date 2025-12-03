@@ -1,6 +1,7 @@
 #include "Grille.h"
 #include "EtatCellule.h"
 #include "EtatMort.h"
+#include "EtatVivant.h"
 
 #include <memory>
 #include <vector>
@@ -119,7 +120,7 @@ bool Grille::operator==(const Grille& autre) {
         return false;
     for (int y=0; y<hauteur ; y++)
         for (int x =0; x<largeur; x++)
-            if (cellule(x,y).estVivante() != autre.cellule(x,y).estVivante())
+            if (getCellule(x,y).estVivante() != autre.getCellule(x,y).estVivante())
                 return false;
     return true;
 }

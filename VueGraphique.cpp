@@ -4,7 +4,7 @@
 #include <chrono>
 
 VueGraphique::VueGraphique(int largeurGrille, int hauteurGrille) 
-    : tailleCellule(10.0f), enPause(false) 
+    : tailleCellule(30.0f), enPause(false)
 {
     sf::VideoMode mode(largeurGrille * tailleCellule, hauteurGrille * tailleCellule);
     window.create(mode, "Jeu de la Vie - POO");
