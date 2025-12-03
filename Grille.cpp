@@ -40,7 +40,14 @@ const Cellule& Grille::getCellule(int x, int y) const {
 Cellule& Grille::getCelluleMutable(int x, int y) {
     return cellules[y][x];
 }
-
+bool grille::estVide() {
+    for (int i=0 ; i<nbLignes ; i++) {
+        for ( int j=0 ; j < nbColonnes ; j++) {
+            if (cellules [i][j] == 1)
+                return false;
+        }
+    }
+return true;
 void Grille::initCellule(int x, int y, EtatCellule * etat) {
     // Éviter la copie/assignation de Cellule (non copiable à cause de unique_ptr)
     cellules[y][x].preparerProchainEtat(etat);
