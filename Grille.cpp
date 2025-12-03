@@ -3,9 +3,8 @@
 #include "EtatMort.h"
 #include "EtatVivant.h"
 
-#include <memory>
 #include <vector>
-#include <string>
+
 
 using namespace std;
 
@@ -53,6 +52,7 @@ const Cellule& Grille::getCellule(int x, int y) const {
 Cellule& Grille::getCelluleMutable(int x, int y) {
     return cellules[y][x];
 }
+
 bool Grille::estVide() {
     for (int y=0 ; y<hauteur ; y++) {
         for ( int x=0 ; x<largeur ; x++) {
@@ -62,6 +62,7 @@ bool Grille::estVide() {
     }
     return true;
 }
+
 void Grille::initCellule(int x, int y, EtatCellule * etat) {
     // Éviter la copie/assignation de Cellule (non copiable à cause de unique_ptr)
     cellules[y][x].preparerProchainEtat(etat);
@@ -115,6 +116,7 @@ void Grille::actualiserToutesCellules(const IRegleJeu& regle) {
         }
     }
 }
+
 bool Grille::operator==(const Grille& autre) {
     if (largeur != autre.largeur ||  hauteur != autre.hauteur)
         return false;
