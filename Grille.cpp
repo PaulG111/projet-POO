@@ -102,7 +102,7 @@ void Grille::actualiserToutesCellules(const IRegleJeu& regle) {
         }
     }
 }
-bool Grille::operator==( Grille& autre) {
+bool Grille::operator==(const Grille& autre) {
     if (largeur != autre.largeur ||  hauteur != autre.hauteur)
         return false;
     for (int y=0; y<hauteur ; y++)
