@@ -25,6 +25,7 @@ class Grille {
     void initCellule(int x, int y, EtatCellule * etat);
     int compterVoisinsVivants(int x, int y);
     void actualiserToutesCellules(const IRegleJeu& regle); // applique la règle du jeu fournie sur toute la grille
+    bool estVide() const;
 };
 
 #endif //PROJET_POO_GRILLE_H
