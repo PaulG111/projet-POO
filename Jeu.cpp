@@ -49,3 +49,27 @@ void Jeu::traiterLogique() {
     }
     grille->actualiserToutesCellules();
 }
+bool Jeu::testUnitaire(const Grille& grilleAttendue, int nbIterations) {
+    for (int i = 0; i < nbIterations; ++i) {
+        traiterLogique();
+    }
+
+    if (grille->getLargeur() != grilleAttendue.getLargeur() ||
+        grille->getLongueur() != grilleAttendue.getLongueur()) {
+        return false;
+    }
+
+
+    for (int y = 0; y < grille->getLongueur(); ++y) {
+        for (int x = 0; x < grille->getLargeur(); ++x) {
+            bool etatActuel  = grille->getCellule(x, y).estVivante();
+            bool etatAttendu = grilleAttendue.getCellule(x, y).estVivante();
+
+            if (etatActuel != etatAttendu) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
