@@ -14,4 +14,5 @@ public:
     
     void afficher(const Grille& grille, int iteration) override;
     bool gererEntree() override;
+    bool estEnPause const override;
 };
