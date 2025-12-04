@@ -46,3 +46,12 @@ void VueConsole::afficher(const Grille& grille, int iteration) {
         std::cerr << "Erreur : Impossible d'écrire le fichier " << nomFichier << std::endl;
     }
 }
+bool VueConsole::gererEntree() {
+    // En mode console fichier, on ne s'arrête jamais, on continue le calcul
+    return true; 
+}
+
+bool VueConsole::estEnPause() const {
+    // La console n'est jamais en pause
+    return false;
+}
