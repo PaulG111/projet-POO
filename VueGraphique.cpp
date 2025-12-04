@@ -1,19 +1,26 @@
+#include <iostream>
 #include "VueGraphique.h"
 #include "Grille.h"
 #include <thread> 
 #include <chrono>
 
+
+
 VueGraphique::VueGraphique(int largeurGrille, int hauteurGrille) 
     : tailleCellule(30.0f), enPause(false), imageChargee(false)
 {
-    sf::VideoMode mode(largeurGrille * tailleCellule, hauteurGrille * tailleCellule);
-    window.create(mode, "Jeu de la Vie - POO");
+    int hauteurBandeau = 100;
+    sf::VideoMode mode(largeurGrille * tailleCellule, (hauteurGrille * tailleCellule) + hauteurBandeau);
+    window.create(mode, "Jeu de la Vie");
     window.setFramerateLimit(60);
 
     if (textureAide.loadFromFile("aide.png")) {
         imageChargee = true;
         spriteAide.setTexture(textureAide);
-        spriteAide.setPosition(0, mode.height - textureAide.getSize().y);
+        float ratioX = (float)mode.width / textureAide.getSize().x;
+        float ratioY = (float)hauteurBandeau / textureAide.getSize().y;
+        spriteAide.setScale(ratioX, ratioY); 
+        spriteAide.setPosition(0, hauteurGrille * tailleCellule);
     } else {
         // Si l'image n'est pas là, ce n'est pas grave, on continue sans.
         std::cerr << "Attention : aide.png introuvable." << std::endl;
