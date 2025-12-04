@@ -41,6 +41,17 @@ Jeu::Jeu(string fichierConfig, bool modeGraphique): iterationActuelle(0), maxIte
 }
 
 void Jeu::lancer() {
+
+    bool demarrage = false;  
+    while (!demarrage && vue->estOuverte()) {
+        vue->afficher(*grille, 0); 
+        if (vue->attendreToucheEntree()) {
+            demarrage = true;
+        }
+    if (!vue->estOuverte()) {
+        return;
+    }
+
     while (iterationActuelle < maxIterations) {
         vue->afficher(*grille, iterationActuelle);
         if (!vue->gererEntree()) {
