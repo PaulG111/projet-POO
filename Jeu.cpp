@@ -41,10 +41,16 @@ Jeu::Jeu(string fichierConfig, bool modeGraphique): iterationActuelle(0), maxIte
 }
 
 void Jeu::lancer() {
-    for (iterationActuelle = 0; iterationActuelle < maxIterations; iterationActuelle++) {
-        Grille ancienne = *grille;
+    while (iterationActuelle < maxIterations) {
         vue->afficher(*grille, iterationActuelle);
-        traiterLogique();
+        if (!vue->gererEntree()) {
+            break; 
+        }
+        if (!vue->estEnPause()) {
+            Grille ancienne = *grille; 
+            traiterLogique();
+            iterationActuelle++; 
+
         if (grille->estVide()) {
             cout << "La grille est morte. Fin du programme." << endl;
             break;
