@@ -55,3 +55,11 @@ bool VueConsole::estEnPause() const {
     // La console n'est jamais en pause
     return false;
 }
+bool VueConsole::attendreToucheEntree() {
+    // En console, on démarre direct 
+    return true; 
+}
+
+bool VueConsole::estOuverte() const {
+    return true; // La console est toujours considérée ouverte
+}
