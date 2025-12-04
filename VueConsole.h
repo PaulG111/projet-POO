@@ -15,6 +15,8 @@ public:
     void afficher(const Grille& grille, int iteration) override;
     bool gererEntree() override;
     bool estEnPause() const override;
+    bool attendreToucheEntree() override;
+    bool estOuverte() const override;
 };
 
 #endif //PROJET_POO_VUECONSOLE_H
