@@ -51,13 +51,14 @@ void Jeu::lancer() {
             traiterLogique();
             iterationActuelle++; 
 
-        if (grille->estVide()) {
-            cout << "La grille est morte. Fin du programme." << endl;
-            break;
-        }
-        if (*grille == ancienne) {
-            cout << "Motif stable. Fin du programme." << endl;
-            break;
+            if (grille->estVide()) {
+                cout << "La grille est morte. Fin du programme." << endl;
+                break;
+            }
+            if (*grille == ancienne) {
+                cout << "Motif stable. Fin du programme." << endl;
+                break;
+            }
         }
     }
 }

@@ -1,0 +1,136 @@
+@startuml
+
+' Configuration du style pour ressembler à votre diagramme
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+skinparam nodesep 60
+skinparam ranksep 60
+
+package "Système" {
+    class Jeu {
+        - iterationActuelle : int
+        - maxIterations : int
+        - grille : unique_ptr<Grille>
+        - regle : unique_ptr<IRegleJeu>
+        - vue : unique_ptr<IVue>
+        + Jeu(fichierConfig : string, modeGraphique : bool)
+        + lancer() : void
+        + traiterLogique() : void
+        + testUnitaire(attendu : Grille, iter : int) : bool
+    }
+
+    class Fichier {
+        + Fichier()
+        + lire(chemin : string, largeur : int&, hauteur : int&) : vector<vector<bool>>
+    }
+}
+
+package "Noyau (Modèle)" {
+    class Grille {
+        - largeur : int
+        - hauteur : int
+        - cellules : vector<vector<Cellule>>
+        + Grille(largeur : int, hauteur : int)
+        + Grille(autre : const Grille&)
+        + getLargeur() : int
+        + getHauteur() : int
+        + getCellule(x : int, y : int) : Cellule&
+        + getCelluleMutable(x : int, y : int) : Cellule&
+        + initCellule(x : int, y : int, etat : EtatCellule*) : void
+        + compterVoisinsVivants(x : int, y : int) : int
+        + actualiserToutesCellules(regle : const IRegleJeu&) : void
+        + estVide() : bool
+        + operator==(autre : const Grille&) : bool
+    }
+
+    class Cellule {
+        - x : int
+        - y : int
+        - etatActuel : unique_ptr<EtatCellule>
+        - etatSuivant : unique_ptr<EtatCellule>
+        + Cellule(x : int, y : int, etatInitial : EtatCellule*)
+        + ~Cellule()
+        + preparerProchainEtat(nouvelEtat : EtatCellule*) : void
+        + validerEtat() : void
+        + estVivante() : bool
+        + getSymbole() : char
+        + getCoordonnees() : pair<int, int>
+        + getEtatActuel() : const EtatCellule*
+    }
+}
+
+package "Logique Métier (Patron Stratégie)" {
+    interface IRegleJeu <<Interface>> {
+        + {abstract} ~IRegleJeu()
+        + {abstract} calculerProchainEtat(etatActuel : const EtatCellule&, nbVoisins : int) : EtatCellule*
+    }
+
+    class RegleConway {
+        + calculerProchainEtat(etatActuel : const EtatCellule&, nbVoisins : int) : EtatCellule*
+    }
+}
+
+package "Vues (MVC / Observer)" {
+    interface IVue <<Interface>> {
+        + {abstract} ~IVue()
+        + {abstract} afficher(grille : const Grille&, iteration : int) : void
+        + {abstract} gererEntree() : bool
+    }
+
+    class VueConsole {
+        - dossierSortie : string
+        + VueConsole(dossierSortie : string)
+        + afficher(grille : const Grille&, iteration : int) : void
+        + gererEntree() : bool
+    }
+
+    class VueGraphique {
+        - window : sf::RenderWindow
+        - tailleCellule : float
+        - enPause : bool
+        - delaiMs : int
+        + VueGraphique(largeurGrille : int, hauteurGrille : int)
+        + afficher(grille : const Grille&, iteration : int) : void
+        + gererEntree() : bool
+    }
+}
+
+package "États (Patron État)" {
+    abstract class EtatCellule {
+        + {abstract} ~EtatCellule()
+        + {abstract} estVivante() : bool
+        + {abstract} getSymbole() : char
+        + {abstract} clone() : EtatCellule*
+    }
+
+    class EtatVivant {
+        + estVivante() : bool
+        + getSymbole() : char
+        + clone() : EtatCellule*
+    }
+
+    class EtatMort {
+        + estVivante() : bool
+        + getSymbole() : char
+        + clone() : EtatCellule*
+    }
+}
+
+' Relations
+Jeu *-- "1" Grille : possède
+Jeu *-- "1" IRegleJeu : utilise stratégie
+Jeu *-- "1" IVue : délègue affichage
+Jeu ..> Fichier : utilise
+
+Grille *-- "*" Cellule : contient
+
+Cellule *-- "1" EtatCellule : possède (actuel)
+
+IRegleJeu <|.. RegleConway
+IVue <|.. VueConsole
+IVue <|.. VueGraphique
+
+EtatCellule <|-- EtatVivant
+EtatCellule <|-- EtatMort
+
+@enduml

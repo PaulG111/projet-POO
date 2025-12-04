@@ -46,13 +46,3 @@ void VueConsole::afficher(const Grille& grille, int iteration) {
         std::cerr << "Erreur : Impossible d'écrire le fichier " << nomFichier << std::endl;
     }
 }
-
-bool VueConsole::gererEntree() {
-    std::cout << "Appuyez sur Entrée pour continuer, tapez q puis Entrée pour quitter: ";
-    std::string ligne;
-    std::getline(std::cin, ligne);
-    if (!std::cin) {
-        return false; // EOF ou erreur -> on arrête
-    }
-    return !(ligne == "q" || ligne == "Q");
-}

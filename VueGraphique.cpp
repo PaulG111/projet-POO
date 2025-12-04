@@ -30,7 +30,8 @@ void VueGraphique::afficher(const Grille& grille, int iteration) {
     
     std::this_thread::sleep_for(std::chrono::milliseconds(delaiMs));
 }
-bool VueGraphique::estEnPause() const{
+
+bool VueGraphique::estEnPause() const {
     return enPause;
 }
 

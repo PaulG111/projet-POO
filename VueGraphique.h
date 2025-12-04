@@ -7,12 +7,12 @@ private:
     sf::RenderWindow window;
     float tailleCellule;
     bool enPause;
-    int delaiMs = 750;
+    int delaiMs = 500;
 
 public:
     VueGraphique(int largeurGrille, int hauteurGrille);
     
     void afficher(const Grille& grille, int iteration) override;
-    bool gererEntree() override;
-    bool estEnPause const override;
+    bool gererEntree();
+    bool estEnPause() const;
 };

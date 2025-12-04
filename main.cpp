@@ -9,7 +9,7 @@ int main() {
     //jeuConsole.lancer();
 
     // Mode graphique
-    Jeu jeuGraphique(chemin, false);
+    Jeu jeuGraphique(chemin, true);
     jeuGraphique.lancer();
 
     return 0;
