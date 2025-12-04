@@ -4,11 +4,20 @@
 #include <chrono>
 
 VueGraphique::VueGraphique(int largeurGrille, int hauteurGrille) 
-    : tailleCellule(30.0f), enPause(false)
+    : tailleCellule(30.0f), enPause(false), imageChargee(false)
 {
     sf::VideoMode mode(largeurGrille * tailleCellule, hauteurGrille * tailleCellule);
     window.create(mode, "Jeu de la Vie - POO");
     window.setFramerateLimit(60);
+
+    if (textureAide.loadFromFile("aide.png")) {
+        imageChargee = true;
+        spriteAide.setTexture(textureAide);
+        spriteAide.setPosition(0, mode.height - textureAide.getSize().y);
+    } else {
+        // Si l'image n'est pas là, ce n'est pas grave, on continue sans.
+        std::cerr << "Attention : aide.png introuvable." << std::endl;
+    }
 }
 
 void VueGraphique::afficher(const Grille& grille, int iteration) {
@@ -25,6 +34,30 @@ void VueGraphique::afficher(const Grille& grille, int iteration) {
             }
         }
     }
+    
+    if (imageChargee) {
+        spriteAide.setColor(sf::Color(255, 255, 255, 200)); 
+        window.draw(spriteAide);
+    }
+    if (enPause) {
+        // On dessine deux barres verticales rouges (Symbole ||)
+        sf::RectangleShape barre1(sf::Vector2f(20, 60));
+        sf::RectangleShape barre2(sf::Vector2f(20, 60));
+        
+        barre1.setFillColor(sf::Color::Red);
+        barre2.setFillColor(sf::Color::Red);
+        
+        // Position au centre de l'écran
+        float cx = window.getSize().x / 2.0f;
+        float cy = window.getSize().y / 2.0f;
+        
+        barre1.setPosition(cx - 30, cy - 30);
+        barre2.setPosition(cx + 10, cy - 30);
+        
+        window.draw(barre1);
+        window.draw(barre2);
+    }
+    
     
     window.display();
     
