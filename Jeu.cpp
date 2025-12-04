@@ -5,7 +5,6 @@
 #include "VueGraphique.h"
 #include "EtatVivant.h"
 #include "EtatMort.h"
-
 #include <filesystem>
 #include <iostream>
 
