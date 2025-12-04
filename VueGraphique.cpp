@@ -88,3 +88,23 @@ bool VueGraphique::gererEntree() {
     
     return window.isOpen();
 }
+
+bool VueGraphique::attendreToucheEntree() {
+    sf::Event event;
+    while (window.pollEvent(event)) {
+        if (event.type == sf::Event::Closed) {
+            window.close();
+            return false;
+        }
+        
+        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter) {
+            return true; 
+        }
+    }
+    return false; 
+}
+
+bool VueGraphique::estOuverte() const {
+    return window.isOpen();
+}
+
