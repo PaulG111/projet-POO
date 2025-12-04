@@ -4,6 +4,8 @@
 
 class VueGraphique : public IVue {
 private:
+    sf::Font font;
+    sf::Text texteMessage;
     sf::RenderWindow window;
     float tailleCellule;
     bool enPause;
@@ -15,4 +17,7 @@ public:
     void afficher(const Grille& grille, int iteration) override;
     bool gererEntree();
     bool estEnPause() const;
+    void afficherMenu();
+    void afficherFin();
+    bool toucheEntree();
 };
