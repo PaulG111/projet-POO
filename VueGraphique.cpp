@@ -1,6 +1,6 @@
 #include "VueGraphique.h"
 #include "Grille.h"
-#include <thread> // Pour le sleep
+#include <thread> 
 #include <chrono>
 
 VueGraphique::VueGraphique(int largeurGrille, int hauteurGrille) 
@@ -29,6 +29,9 @@ void VueGraphique::afficher(const Grille& grille, int iteration) {
     window.display();
     
     std::this_thread::sleep_for(std::chrono::milliseconds(delaiMs));
+}
+bool VueGraphique::estEnPause() const{
+    return enPause;
 }
 
 bool VueGraphique::gererEntree() {
