@@ -49,7 +49,6 @@ void Jeu::lancer() {
         if (!vue->estEnPause()) {
             Grille ancienne = *grille; 
             traiterLogique();
-            iterationActuelle++; 
 
             if (grille->estVide()) {
                 cout << "La grille est morte. Fin du programme." << endl;
@@ -59,6 +58,7 @@ void Jeu::lancer() {
                 cout << "Motif stable. Fin du programme." << endl;
                 break;
             }
+            iterationActuelle++;
         }
     }
 }
