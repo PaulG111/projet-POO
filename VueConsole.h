@@ -13,6 +13,8 @@ public:
     explicit VueConsole(std::string dossierSortie = "sorties");
 
     void afficher(const Grille& grille, int iteration) override;
+    bool gererEntree() override;
+    bool estEnPause() const override;
 };
 
 #endif //PROJET_POO_VUECONSOLE_H
