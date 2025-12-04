@@ -18,4 +18,5 @@ public:
     bool gererEntree();
     bool estEnPause() const;
     bool attendreToucheEntree() override;
+    bool estOuverte() const override;
 };
