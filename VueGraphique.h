@@ -6,7 +6,7 @@ private:
     sf::RenderWindow window;
     float tailleCellule;
     bool enPause;
-    int delaiMs = 500;
+    int delaiMs = 50;
     sf::Texture textureAide;
     sf::Sprite spriteAide;  
     bool imageChargee; 
@@ -17,6 +17,6 @@ public:
     void afficher(const Grille& grille, int iteration) override;
     bool gererEntree();
     bool estEnPause() const;
-    bool attendreToucheEntree() override;
+    bool attendreToucheEntree();
     bool estOuverte() const override;
 };

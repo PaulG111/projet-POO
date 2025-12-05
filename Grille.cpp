@@ -1,5 +1,4 @@
 #include "Grille.h"
-#include "EtatCellule.h"
 #include "EtatMort.h"
 #include "EtatVivant.h"
 

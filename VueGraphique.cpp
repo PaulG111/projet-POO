@@ -4,10 +4,8 @@
 #include <thread> 
 #include <chrono>
 
-
-
 VueGraphique::VueGraphique(int largeurGrille, int hauteurGrille) 
-    : tailleCellule(30.0f), enPause(false), imageChargee(false)
+    : tailleCellule(7.0f), enPause(false), imageChargee(false)
 {
     int hauteurBandeau = 100;
     sf::VideoMode mode(largeurGrille * tailleCellule, (hauteurGrille * tailleCellule) + hauteurBandeau);

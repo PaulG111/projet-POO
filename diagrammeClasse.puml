@@ -16,7 +16,7 @@ package "Système" {
         + Jeu(fichierConfig : string, modeGraphique : bool)
         + lancer() : void
         + traiterLogique() : void
-        + testUnitaire(attendu : Grille, iter : int) : bool
+        + testUnitaire(attendu : const Grille&, iter : int) : bool
     }
 
     class Fichier {
@@ -32,9 +32,10 @@ package "Noyau (Modèle)" {
         - cellules : vector<vector<Cellule>>
         + Grille(largeur : int, hauteur : int)
         + Grille(autre : const Grille&)
-        + getLargeur() : int
-        + getHauteur() : int
+        + getLargeur() const : int
+        + getHauteur() const : int
         + getCellule(x : int, y : int) : Cellule&
+        + getCellule(x : int, y : int) const : const Cellule&
         + getCelluleMutable(x : int, y : int) : Cellule&
         + initCellule(x : int, y : int, etat : EtatCellule*) : void
         + compterVoisinsVivants(x : int, y : int) : int
@@ -52,21 +53,21 @@ package "Noyau (Modèle)" {
         + ~Cellule()
         + preparerProchainEtat(nouvelEtat : EtatCellule*) : void
         + validerEtat() : void
-        + estVivante() : bool
-        + getSymbole() : char
-        + getCoordonnees() : pair<int, int>
-        + getEtatActuel() : const EtatCellule*
+        + estVivante() const : bool
+        + getSymbole() const : char
+        + getCoordonnees() const : pair<int, int>
+        + getEtatActuel() const : const EtatCellule*
     }
 }
 
 package "Logique Métier (Patron Stratégie)" {
     interface IRegleJeu <<Interface>> {
         + {abstract} ~IRegleJeu()
-        + {abstract} calculerProchainEtat(etatActuel : const EtatCellule&, nbVoisins : int) : EtatCellule*
+        + {abstract} calculerProchainEtat(etatActuel : const EtatCellule&, nbVoisins : int) const : EtatCellule*
     }
 
     class RegleConway {
-        + calculerProchainEtat(etatActuel : const EtatCellule&, nbVoisins : int) : EtatCellule*
+        + calculerProchainEtat(etatActuel : const EtatCellule&, nbVoisins : int) const : EtatCellule*
     }
 }
 
@@ -75,6 +76,9 @@ package "Vues (MVC / Observer)" {
         + {abstract} ~IVue()
         + {abstract} afficher(grille : const Grille&, iteration : int) : void
         + {abstract} gererEntree() : bool
+        + {abstract} estEnPause() const : bool
+        + {abstract} attendreToucheEntree() : bool
+        + {abstract} estOuverte() const : bool
     }
 
     class VueConsole {
@@ -82,6 +86,9 @@ package "Vues (MVC / Observer)" {
         + VueConsole(dossierSortie : string)
         + afficher(grille : const Grille&, iteration : int) : void
         + gererEntree() : bool
+        + estEnPause() const : bool
+        + attendreToucheEntree() : bool
+        + estOuverte() const : bool
     }
 
     class VueGraphique {
@@ -89,30 +96,36 @@ package "Vues (MVC / Observer)" {
         - tailleCellule : float
         - enPause : bool
         - delaiMs : int
+        - textureAide : sf::Texture
+        - spriteAide : sf::Sprite
+        - imageChargee : bool
         + VueGraphique(largeurGrille : int, hauteurGrille : int)
         + afficher(grille : const Grille&, iteration : int) : void
         + gererEntree() : bool
+        + estEnPause() const : bool
+        + attendreToucheEntree() : bool
+        + estOuverte() const : bool
     }
 }
 
 package "États (Patron État)" {
     abstract class EtatCellule {
         + {abstract} ~EtatCellule()
-        + {abstract} estVivante() : bool
-        + {abstract} getSymbole() : char
-        + {abstract} clone() : EtatCellule*
+        + {abstract} estVivante() const : bool
+        + {abstract} getSymbole() const : char
+        + {abstract} clone() const : EtatCellule*
     }
 
     class EtatVivant {
-        + estVivante() : bool
-        + getSymbole() : char
-        + clone() : EtatCellule*
+        + estVivante() const : bool
+        + getSymbole() const : char
+        + clone() const : EtatCellule*
     }
 
     class EtatMort {
-        + estVivante() : bool
-        + getSymbole() : char
-        + clone() : EtatCellule*
+        + estVivante() const : bool
+        + getSymbole() const : char
+        + clone() const : EtatCellule*
     }
 }
 

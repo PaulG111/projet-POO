@@ -10,7 +10,7 @@
 
 using namespace std;
 
-Jeu::Jeu(string fichierConfig, bool modeGraphique): iterationActuelle(0), maxIterations(100) {
+Jeu::Jeu(string fichierConfig, bool modeGraphique): iterationActuelle(0), maxIterations(500) {
     int largeur, hauteur;
     Fichier fichier;
 
@@ -34,8 +34,7 @@ Jeu::Jeu(string fichierConfig, bool modeGraphique): iterationActuelle(0), maxIte
 
         vue = unique_ptr<IVue>(new VueConsole(dossierSortie));
         std::cout << "Les fichiers seront generes dans le dossier : " << dossierSortie << std::endl;
-    }
-    else
+    } else
         vue = unique_ptr<IVue>(new VueGraphique(largeur, hauteur));
 }
 
