@@ -50,6 +50,7 @@ void Jeu::lancer() {
     if (!vue->estOuverte()) {
         return;
     }
+    }
 
     while (iterationActuelle < maxIterations) {
         vue->afficher(*grille, iterationActuelle);
